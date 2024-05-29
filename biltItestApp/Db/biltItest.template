@@ -1,0 +1,127 @@
+# biltItest.template
+# Skeleton Template database for the Bilt iTest mixed system modulator system
+# Pete Owens - 8/7/2011
+#
+# substitutions:
+# device  - device name
+# port    - asyn port
+# module  - module number
+# max     - maximum current
+#
+################################################################################
+# Module Name
+#
+record(stringin, "$(device):NAME") 
+{
+    field(DESC, "Module Name")
+    field(DTYP, "stream")
+    field(INP,  "@biltItest.proto get_name($(module)) $(port)")
+    field(SCAN, "10 second")
+}
+################################################################################
+# State
+#
+record(bo, "$(device):STATUS_SP")
+{
+    field(DESC, "State")
+    field(DTYP, "stream")
+    field(OUT,  "@biltItest.proto set_state($(module)) $(port)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+record(bo, "$(device):CLEAR")
+{
+    field(DESC, "Clear State")
+    field(DTYP, "stream")
+    field(OUT,  "@biltItest.proto set_clear($(module)) $(port)")
+    field(ZNAM, "Clear")
+}
+record(mbbi, "$(device):STATUS_RB")
+{
+    field(DESC, "State")
+    field(DTYP, "stream")
+    field(INP,  "@biltItest.proto get_state($(module)) $(port)")
+    field(SCAN, "1 second")
+    field(ZRST, "Off")
+    field(ONST, "On")
+    field(TWST, "Warning")
+    field(THST, "Alarm")
+    field(TWSV, "MINOR")
+    field(THSV, "MAJOR")
+}
+################################################################################
+# Current
+#
+record(ao, "$(device):CURRENT_SP")
+{
+    field(DESC, "Set Current")
+    field(DTYP, "stream")
+    field(OUT,  "@biltItest.proto set_setcurr($(module)) $(port)")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(DRVL, "-$(max)")
+    field(DRVH, "$(max)")
+    field(LOPR, "-$(max)")
+    field(HOPR, "$(max)")
+}
+record(ai, "$(device):SETCURR_RB")
+{
+    field(DESC, "Set Current")
+    field(DTYP, "stream")
+    field(INP,  "@biltItest.proto get_setcurr($(module)) $(port)")
+    field(SCAN, "1 second")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(LOPR, "-$(max)")
+    field(HOPR, "$(max)")
+    field(LOW,  "-$(max)")
+    field(HIGH, "$(max)")
+    field(LOLO, "-$(max)1")
+    field(HIHI, "$(max)1")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):CURRENT_RB")
+{
+    field(DESC, "Measured Current")
+    field(DTYP, "stream")
+    field(INP,  "@biltItest.proto get_curr($(module)) $(port)")
+    field(SCAN, "1 second")
+    field(EGU,  "A")
+    field(PREC, "5")
+    field(LOPR, "-$(max)")
+    field(HOPR, "$(max)")
+    field(LOW,  "-$(max)")
+    field(HIGH, "$(max)")
+    field(LOLO, "-$(max)1")
+    field(HIHI, "$(max)1")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# Voltage
+#
+record(ai, "$(device):VOLTAGE_RB")
+{
+    field(DESC, "Measured Voltage")
+    field(DTYP, "stream")
+    field(INP,  "@biltItest.proto get_volt($(module)) $(port)")
+    field(SCAN, "1 second")
+    field(EGU,  "V")
+    field(PREC, "5")
+    field(LOPR, "-$(max)")
+    field(HOPR, "$(max)")
+    field(LOW,  "-$(max)")
+    field(HIGH, "$(max)")
+    field(LOLO, "-$(max)1")
+    field(HIHI, "$(max)1")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
