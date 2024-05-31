@@ -23,4 +23,4 @@ EPICS_BASE=/opt/codac-4.1/epics/base
 #Capfast users may need the following definitions
 #CAPFAST_TEMPLATES=
 #SCH2EDIF_PATH=
--include $(TOP)/configure/RELEASE.private
+-include $(TOP)/configure/RELEASE.local
