@@ -10,7 +10,8 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install)
 # databases, templates, substitutions like this
-DB += biltItest.template
+DB += streamdevicesample.template
+DB += streamdevicesample.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

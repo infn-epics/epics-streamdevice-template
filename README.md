@@ -1,11 +1,17 @@
-# BiltItest
+# EPICS StreamDevice IOC Template
 
-manual-url: https://baltig.infn.it/star-controls/star-controls-hw/-/wikis/PS%20IOC%20Documents
+This repository serves as a template for creating EPICS IOC projects using [StreamDevice](https://paulscherrerinstitute.github.io/StreamDevice/index.html).
 
-max_current: 10
+## Features
+- Pre-configured support for StreamDevice.
+- Example protocol and database files.
+- Ready-to-use `st.cmd` and `envPaths` files.
 
-model: BE2811_2CH
+## Getting Started
+1. Click the "Use this template" button on GitHub to create a new repository based on this template.
+2. Clone your new repository:
+   ```bash
+   git clone https://github.com/<your-username>/<your-repo>.git
+   cd <your-repo>
+```
 
-vendor: iTEST SARL - F-31500 Toulouse
-
-vendor-site: http://www.itest.fr/Pdf/BE2811_brochure.pdf
